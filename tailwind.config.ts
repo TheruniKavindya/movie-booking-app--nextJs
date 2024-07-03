@@ -19,6 +19,11 @@ module.exports = {
           "system-ui",
         ],
       },
+      colors: {
+        "movie-primary": "#1c1b21",
+        "movie-secondary": "#f6a120",
+        "movie-white": "#ffffff",
+      },
     },
   },
   plugins: [],
