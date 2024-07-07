@@ -23,6 +23,8 @@ module.exports = {
         "movie-primary": "#1c1b21",
         "movie-secondary": "#f6a120",
         "movie-white": "#ffffff",
+        "movie-gray": "#646464",
+        "movie-background": "#131217",
       },
     },
   },
