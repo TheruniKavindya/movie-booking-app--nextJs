@@ -17,7 +17,7 @@ export default function Home() {
           method: "GET",
           headers: {
             accept: "application/json",
-            Authorization: `Bearer ${process.env.VITE_APP_ACCESS_TOKEN}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
           },
         }
       )
@@ -45,7 +45,7 @@ export default function Home() {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${process.env.VITE_APP_ACCESS_TOKEN}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
         },
       })
         .then((res) => res.json())
@@ -59,7 +59,7 @@ export default function Home() {
           }
         });
     })();
-  }, []);
+  }, [isButtonClicked]);
 
   return (
     <div className="flex flex-col w-full bg-movie-background p-5">
