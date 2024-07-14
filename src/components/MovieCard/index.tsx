@@ -1,7 +1,6 @@
-import React from "react";
+import Image from "next/image";
 import Rating from "../Rating";
 import SecondaryButton from "../SecondaryButton";
-import Image from "next/image";
 
 interface IMovieCard {
   movieTitle: string;

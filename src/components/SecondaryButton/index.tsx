@@ -1,5 +1,3 @@
-import React from "react";
-
 interface ISecondaryButton {
   title: string;
   icon?: JSX.Element;

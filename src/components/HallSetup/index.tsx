@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-key */
-import React from "react";
 import { SlCalender } from "react-icons/sl";
 
 interface IHallSetup {

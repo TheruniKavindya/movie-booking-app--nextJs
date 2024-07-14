@@ -1,5 +1,3 @@
-import React from "react";
-
 interface IIconButton {
   icon: JSX.Element;
   onClickHandler?: () => void;

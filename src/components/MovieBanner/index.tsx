@@ -1,8 +1,6 @@
-import React from "react";
-import PrimaryButton from "../PrimaryButton";
-import { FaPlay, FaPlus, FaHeart } from "react-icons/fa";
-import SecondaryButton from "../SecondaryButton";
+import { FaHeart, FaPlay, FaPlus } from "react-icons/fa";
 import IconButton from "../IconButton";
+import PrimaryButton from "../PrimaryButton";
 
 interface IMovieBanner {
   image: string;

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
+import { IoIosStar, IoIosStarHalf } from "react-icons/io";
 
 interface IRating {
   value: number;
