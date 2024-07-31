@@ -3,11 +3,14 @@ import HallSetup from "@/components/HallSetup";
 import MovieBanner from "@/components/MovieBanner";
 import MovieCard from "@/components/MovieCard";
 import { useEffect, useState } from "react";
+import MovieDetails from "./movie/[…movieID]/page";
+import Link from "next/link";
 
 export default function Home() {
   const [movieData, setMovieData] = useState<any[]>([]);
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [selectedMovie, setSelectedMovie] = useState<any>();
+  const [movieId, setMovieId] = useState<string>("");
 
   useEffect(() => {
     (async () => {
@@ -35,19 +38,24 @@ export default function Home() {
     })();
   }, []);
 
-  const handleBookNowButtonClick = () => {
-    setIsButtonClicked(true);
+  const handleBookNowButtonClick = (id: string) => {
+    // <Link href={`/movie/${id}`} />;
+    setMovieId(id);
+    console.log(id);
   };
 
   useEffect(() => {
     (async () => {
-      await fetch("https://api.themoviedb.org/3/movie/278?language=en-US", {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
-        },
-      })
+      await fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((response) => {
           if (response) {
@@ -59,7 +67,7 @@ export default function Home() {
           }
         });
     })();
-  }, [isButtonClicked]);
+  }, [movieId]);
 
   return (
     <div className="flex flex-col w-full bg-movie-background p-5">
@@ -67,30 +75,32 @@ export default function Home() {
         <p className="text-movie-white font-lato-regular text-4xl">MOVIE BOX</p>
       </div>
 
-      {isButtonClicked && selectedMovie && (
+      {/* {isButtonClicked && selectedMovie && (
         <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-8">
+          <div className="col-span-full lg:col-span-8">
             <MovieBanner
               image={`https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path}`}
+              movieName={selectedMovie.title}
             />
           </div>
-          <div className="col-span-4">
+          <div className="col-span-full lg:col-span-4">
             <HallSetup
               availableSeats={20}
               date="10-July"
               hallName="Scope CInema"
               numberOfSeats={50}
               time="10.30AM"
+              bookedSeats={new Set([1, 3, 5, 11])}
             />
           </div>
         </div>
-      )}
+      )} */}
 
       <div className="flex flex-col mt-5">
         <p className="font-lato-thin text-movie-white text-lg">
           Popular Movies
         </p>
-        <div className="flex md:flex-row gap-y-10 gap-5 flex-wrap mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5  mt-5">
           {Array.isArray(movieData) &&
             movieData.map((movie: any) => (
               <MovieCard
@@ -99,7 +109,8 @@ export default function Home() {
                 company={movie.original_title}
                 image={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 rate={4}
-                onButtonClickHandler={handleBookNowButtonClick}
+                id={movie.id}
+                onButtonClickHandler={() => handleBookNowButtonClick(movie.id)}
               />
             ))}
         </div>

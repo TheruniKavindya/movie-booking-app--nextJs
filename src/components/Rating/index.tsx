@@ -14,9 +14,6 @@ const Rating = ({ value }: IRating) => {
     totalStars - filledStars - Math.ceil(halfStars)
   );
 
-  console.log(filledStars, halfStars, emptyStars, totalStars);
-  console.log("working");
-
   return (
     <div className="flex gap-1">
       {Array.from({ length: filledStars }, (_, i) => i).map((_, index) => (

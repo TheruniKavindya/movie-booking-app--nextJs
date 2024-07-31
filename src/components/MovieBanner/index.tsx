@@ -4,9 +4,10 @@ import PrimaryButton from "../PrimaryButton";
 
 interface IMovieBanner {
   image: string;
+  movieName: string;
 }
 
-const MovieBanner = ({ image }: IMovieBanner) => {
+const MovieBanner = ({ image, movieName }: IMovieBanner) => {
   return (
     <div className="relative">
       <img
@@ -14,6 +15,12 @@ const MovieBanner = ({ image }: IMovieBanner) => {
         alt="banner"
         className="w-full h-[60vh] object-fill rounded-lg"
       />
+
+      <div className="absolute bottom-10 right-28">
+        <p className="text-movie-white text-5xl font-lato-regular font-semibold">
+          {movieName}
+        </p>
+      </div>
 
       {/* bottom buttons  */}
       <div className="absolute bottom-0 left-0 p-2 bg-movie-background flex items-center justify-center gap-2 rounded-tr-lg">
